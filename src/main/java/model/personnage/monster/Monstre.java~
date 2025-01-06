@@ -1,0 +1,4 @@
+package model.personnage.monster;
+
+public class Monstre {
+}

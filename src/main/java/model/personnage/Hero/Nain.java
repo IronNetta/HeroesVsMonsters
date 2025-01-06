@@ -1,0 +1,12 @@
+package model.personnage.Hero;
+
+import model.personnage.Perso;
+
+public class Nain extends Perso {
+
+    public Nain() {}
+
+    public Nain(String name, int End, int For, int Pv) {
+        super(name, End, For, Pv);
+    }
+}
