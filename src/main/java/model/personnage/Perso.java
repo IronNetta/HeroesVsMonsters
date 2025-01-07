@@ -2,18 +2,15 @@ package model.personnage;
 
 public class Perso {
     private String name;
-    private int End;
-    private int For;
+    private final int End;
+    private final int For;
     private int Pv;
 
-    public Perso() {
-    }
-
-    public Perso(String name, int End, int For, int Pv) {
+    public Perso(String name, int end, int forStat) {
         this.name = name;
-        this.End = End;
-        this.For = For;
-        this.Pv = Pv;
+        this.End = end;
+        this.For = forStat;
+        this.Pv = end + calculateModifier(end);
     }
 
     public String getName() {
@@ -28,24 +25,24 @@ public class Perso {
         return End;
     }
 
-    public void setEnd(int end) {
-        End = end;
-    }
-
     public int getFor() {
         return For;
-    }
-
-    public void setFor(int aFor) {
-        For = aFor;
     }
 
     public int getPv() {
         return Pv;
     }
 
-    public void setPv(int pv) {
-        Pv = pv;
+    public void takeDamage(int damage) {
+        this.Pv -= damage;
+        if (this.Pv < 0) this.Pv = 0; // PV cannot be negative
+    }
+
+    protected int calculateModifier(int value) {
+        if (value < 5) return -1;
+        if (value < 10) return 0;
+        if (value < 15) return 1;
+        return 2;
     }
 
     @Override

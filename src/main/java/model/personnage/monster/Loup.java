@@ -4,7 +4,12 @@ import model.personnage.Perso;
 
 public class Loup extends Monstre {
 
-    public Loup(String name, int End, int For, int Pv) {
-        super(name, End, For, Pv);
+    public Loup(String name, int end, int forStat) {
+        super(name, end, forStat);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " (Loup)";
     }
 }

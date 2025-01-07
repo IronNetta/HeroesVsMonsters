@@ -1,0 +1,110 @@
+## Synthèse du programme Java avec Swing : Heroes Vs Monsters
+
+### Objectif
+Réaliser un jeu où des héros affrontent des monstres dans une forêt enchantée. Ce programme devra être orienté objets, avec une interface graphique basée sur Swing, permettant de gérer la création des personnages, les combats, et l’exploration d’une zone de jeu.
+
+### 1. Structure générale
+- **Héros** :
+  - Types : Humain, Nain
+  - Caractéristiques :
+    - Endurance (base + bonus selon le type)
+    - Force (base + bonus selon le type)
+    - Points de vie (Endurance + modificateur)
+  - Action : Frapper (dégâts = 1D4 + modificateur de Force)
+  - Récupère de l'or et du cuir sur les monstres tués.
+
+- **Monstres** :
+  - Types : Loup, Orque, Dragonnet
+  - Caractéristiques :
+    - Endurance et Force déterminées à la création.
+    - Points de vie calculés comme pour les héros.
+  - Particularités :
+    - Loup : Peut être dépecé pour du cuir.
+    - Orque : Possède de l'or et +1 en Force.
+    - Dragonnet : Possède de l'or, peut être dépecé pour du cuir, et +1 en Endurance.
+
+- **Zone de jeu** :
+  - Grille 15x15.
+  - 10 monstres espacés d’au moins 2 cases.
+  - Position initiale des personnages (X, Y).
+  - Monstres cachés jusqu'au début d'un combat.
+
+### 2. Fonctionnalités principales à implémenter
+
+#### a. Création des personnages
+- Génération aléatoire de Force et d’Endurance (4D6, garde les 3 meilleurs).
+- Calcul des Points de Vie : Endurance + modificateur (basé sur le score de la caractéristique).
+- Affichage des informations des personnages dans l’interface.
+
+#### b. Combat
+- Action Frapper :
+  - Déterminer les dégâts (1D4 + modificateur de Force).
+  - Réduire les Points de Vie de la cible.
+- Mort d’un personnage si PV ≤ 0.
+- Loot des monstres par les héros (or et/ou cuir).
+
+#### c. Exploration de la zone de jeu
+- Gestion d'une grille de 15x15 :
+  - Afficher les positions des héros ("H") et des monstres ("L", "O", "D" pour loup, orque, dragonnet).
+  - Les monstres n’apparaissent qu’en combat.
+- Mouvements du héros sur la grille (clavier ou boutons).
+- Combat automatique lorsqu’un héros est adjacent à un monstre (horizontalement ou verticalement).
+
+#### d. Conditions de fin de jeu
+- Victoire : Plus de monstres sur la carte.
+- Défaite : Le héros meurt.
+
+### 3. Contraintes techniques
+- Les propriétés de Force et Endurance doivent être en lecture seule.
+- Les Points de Vie doivent être :
+  - Privés (lecture et écriture) si les délégués sont connus.
+  - Sinon, en lecture seule.
+- Les bonus des types (Héros et Monstres) ne doivent pas modifier la valeur de base de Force ou d’Endurance.
+- Classe "Dé" :
+  - Propriétés : Minimum et Maximum (lecture seule).
+  - Méthode : Lance() qui retourne un entier aléatoire.
+
+### 4. Interfaces graphiques Swing à développer
+
+#### a. Écran d’accueil
+- Bouton pour créer un héros.
+- Bouton pour lancer une partie.
+
+#### b. Écran de jeu
+- Grille de la zone de jeu (15x15).
+- Informations sur le héros (caractéristiques, inventaire).
+- Zone de log pour afficher les événements (combats, loot, etc.).
+- Boutons pour les actions (se déplacer, attaquer).
+
+#### c. Écran de fin
+- Message de victoire ou de défaite.
+- Option pour recommencer ou quitter.
+
+### 5. Classes Java à prévoir
+- **Personnage (classe abstraite)** :
+  - Attributs : Force, Endurance, Points de Vie, X, Y
+  - Méthodes : Calcul des PV, Frapper
+
+- **Héros (extends Personnage)** :
+  - Sous-classes : Humain, Nain
+  - Inventaire : Or, Cuir
+
+- **Monstre (extends Personnage)** :
+  - Sous-classes : Loup, Orque, Dragonnet
+  - Attributs supplémentaires : Or, Cuir
+
+- **ZoneDeJeu** :
+  - Grille 15x15 avec gestion des positions.
+  - Méthodes pour le déplacement et la détection des combats.
+
+- **Dé** :
+  - Attributs : Minimum, Maximum
+  - Méthode : Lance()
+
+### Plan d’implémentation
+1. Créer les classes de base (Personnage, Héros, Monstre, Dé).
+2. Implémenter la logique de combat.
+3. Gérer la zone de jeu.
+4. Ajouter l’interface graphique avec Swing.
+5. Tester les différents scénarios.
+

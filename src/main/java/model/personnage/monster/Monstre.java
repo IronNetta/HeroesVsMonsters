@@ -1,10 +1,40 @@
 package model.personnage.monster;
 
+import model.dice.Dice;
 import model.personnage.Perso;
 
-public class Monstre extends Perso {
+import java.util.Random;
 
-    public Monstre(String name, int End, int For, int Pv) {
-        super(name, End, For, Pv);
+public class Monstre extends Perso {
+    private int gold;
+    private int leather;
+
+    public Monstre(String name, int end, int forStat) {
+        super(name, end, forStat);
+        Random random = new Random();
+        this.gold = random.nextInt(6) + 1;
+        this.leather = random.nextInt(4) + 1;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public int getLeather() {
+        return leather;
+    }
+
+    public void attack(Perso target) {
+        int damage = Dice.D4.roll() + calculateModifier(this.getFor());
+        target.takeDamage(damage);
+    }
+
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Monstre{" +
+                "gold=" + gold +
+                ", leather=" + leather +
+                '}';
     }
 }

@@ -4,7 +4,12 @@ import model.personnage.Perso;
 
 public class Orque extends Monstre {
 
-    public Orque(String name, int End, int For, int Pv) {
-        super(name, End, For, Pv);
+    public Orque(String name, int end, int forStat) {
+        super(name, end, forStat + 1);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " (Orque)";
     }
 }
