@@ -1,6 +1,8 @@
 package model.personnage;
 
-public class Perso {
+import model.dice.Dice;
+
+public abstract class Perso {
     private String name;
     private final int End;
     private final int For;
@@ -35,15 +37,21 @@ public class Perso {
 
     public void takeDamage(int damage) {
         this.Pv -= damage;
-        if (this.Pv < 0) this.Pv = 0; // PV cannot be negative
+        if (this.Pv < 0) this.Pv = 0;
     }
 
-    protected int calculateModifier(int value) {
+    public int calculateModifier(int value) {
         if (value < 5) return -1;
         if (value < 10) return 0;
         if (value < 15) return 1;
         return 2;
     }
+
+    public boolean isAlive() {
+        return this.Pv > 0;
+    }
+
+    public abstract void attack(Perso target);
 
     @Override
     public String toString() {
@@ -72,4 +80,5 @@ public class Perso {
         result = 31 * result + Pv;
         return result;
     }
+
 }

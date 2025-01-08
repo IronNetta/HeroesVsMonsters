@@ -29,6 +29,9 @@ public class Monstre extends Perso {
         target.takeDamage(damage);
     }
 
+    public int[] dropLoot() {
+        return new int[]{this.gold, this.leather};
+    }
 
     @Override
     public String toString() {

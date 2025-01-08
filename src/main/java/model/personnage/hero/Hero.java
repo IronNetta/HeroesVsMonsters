@@ -1,4 +1,4 @@
-package model.personnage.Hero;
+package model.personnage.hero;
 
 import model.personnage.Perso;
 import model.dice.Dice;
@@ -26,6 +26,7 @@ public class Hero extends Perso {
         this.leather += leather;
     }
 
+    @Override
     public void attack(Perso target) {
         int damage = Dice.D4.roll() + calculateModifier(this.getFor());
         target.takeDamage(damage);

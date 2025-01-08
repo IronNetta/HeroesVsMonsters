@@ -1,8 +1,6 @@
-package model.personnage.Hero;
+package model.personnage.hero;
 
-import model.personnage.Perso;
-
-public class Nain extends Perso {
+public class Nain extends Hero {
 
     public Nain(String name, int baseEnd, int baseFor) {
         super(name, baseEnd + 2, baseFor);

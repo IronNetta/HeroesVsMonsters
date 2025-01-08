@@ -1,6 +1,4 @@
-package model.personnage.Hero;
-
-import model.personnage.Perso;
+package model.personnage.hero;
 
 public class Humain extends Hero{
 
