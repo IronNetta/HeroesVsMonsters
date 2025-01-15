@@ -1,12 +1,12 @@
 package model.personnage;
 
-import model.dice.Dice;
-
 public abstract class Perso {
     private String name;
     private final int End;
     private final int For;
     private int Pv;
+    private int x;
+    private int y;
 
     public Perso(String name, int end, int forStat) {
         this.name = name;
@@ -14,7 +14,6 @@ public abstract class Perso {
         this.For = forStat;
         this.Pv = end + calculateModifier(end);
     }
-
     public String getName() {
         return name;
     }
@@ -33,6 +32,19 @@ public abstract class Perso {
 
     public int getPv() {
         return Pv;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public void takeDamage(int damage) {
